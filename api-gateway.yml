@@ -12,23 +12,23 @@ spring:
       routes[0]:
         id: user-service
         uri: lb://user-service
-        predicates[0]: Path=/api/user
+        predicates[0]: Path=/api/user/**
       routes[1]:
         id: party-service
         uri: lb://party-service
-        predicates[0]: Path=/api/party
+        predicates[0]: Path=/api/party/**
       routes[2]:
         id: member-service
         uri: lb://member-service
-        predicates[0]: Path=/api/member
+        predicates[0]: Path=/api/member/**
       routes[3]:
         id: bill-service
         uri: lb://bill-service
-        predicates[0]: Path=/api/bill
+        predicates[0]: Path=/api/bill/**
       routes[4]:
         id: notification-service
         uri: lb://notification-service
-        predicates[0]: Path=/api/notification
+        predicates[0]: Path=/api/notification/**
 
 eureka:
   client:
