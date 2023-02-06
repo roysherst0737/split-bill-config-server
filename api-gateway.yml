@@ -1,0 +1,45 @@
+server:
+  port: 80
+
+spring:
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      probability: 1.0
+  cloud:
+    gateway:
+      routes[0]:
+        id: user-service
+        uri: lb://user-service
+        predicates[0]: Path=/api/user
+      routes[1]:
+        id: party-service
+        uri: lb://party-service
+        predicates[0]: Path=/api/party
+      routes[2]:
+        id: member-service
+        uri: lb://member-service
+        predicates[0]: Path=/api/member
+      routes[3]:
+        id: bill-service
+        uri: lb://bill-service
+        predicates[0]: Path=/api/bill
+      routes[4]:
+        id: notification-service
+        uri: lb://notification-service
+        predicates[0]: Path=/api/notification
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+
+# Actuator Prometheus Endpoint
+management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
