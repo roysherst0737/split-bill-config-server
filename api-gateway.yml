@@ -13,6 +13,8 @@ spring:
         id: user-service
         uri: lb://user-service
         predicates[0]: Path=/api/user/**
+        predicates[1]: Path=/api/userAuth/**
+      routes[1]:
       routes[1]:
         id: party-service
         uri: lb://party-service
