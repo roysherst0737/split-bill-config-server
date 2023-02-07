@@ -22,7 +22,7 @@ management:
       exposure:
         include: prometheus
 
-  jwt:
+jwt:
   variables:
     jwtSecret: menstalk
     jwtExpirationMs: 1800000
