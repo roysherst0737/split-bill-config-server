@@ -14,8 +14,8 @@ spring:
       routes[0]:
         id: user-service
         uri: lb://user-service
-        predicates[0]: Path=/api/user/**
-        predicates[1]: Path=/api/auth/**
+        # predicates[0]: Path=/api/user/**
+        predicates[0]: Path=/api/auth/**
       routes[1]:
         id: party-service
         uri: lb://party-service
