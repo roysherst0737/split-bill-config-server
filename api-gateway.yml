@@ -52,5 +52,5 @@ management:
 
 jwt:
   variables:
-    jwtSecret: menstalk
+    jwtSecret: 6MensTalk1Andy2Simon3Roy4Po5Jimmy6BuddySideProject0SplittingBill0
     jwtExpirationMs: 1800000
