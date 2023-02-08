@@ -19,22 +19,27 @@ spring:
         id: party-service
         uri: lb://party-service
         predicates[0]: Path=/api/party/**
+        filters[0]: JwtAuthenticationFilter
       routes[2]:
         id: member-service
         uri: lb://member-service
         predicates[0]: Path=/api/member/**
+        filters[0]: JwtAuthenticationFilter
       routes[3]:
         id: bill-service
         uri: lb://bill-service
         predicates[0]: Path=/api/bill/**
+        filters[0]: JwtAuthenticationFilter
       routes[4]:
         id: notification-service
         uri: lb://notification-service
         predicates[0]: Path=/api/notification/**
+        filters[0]: JwtAuthenticationFilter
       routes[5]:
         id: user-service
         uri: lb://user-service
         predicates[0]: Path=/api/auth/**
+        filters[0]: JwtAuthenticationFilter
 
 eureka:
   client:
