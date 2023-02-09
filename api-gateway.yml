@@ -11,6 +11,12 @@ spring:
       probability: 1.0
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods: "*"
       routes[0]:
         id: user-service
         uri: lb://user-service
