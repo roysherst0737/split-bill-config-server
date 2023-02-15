@@ -21,22 +21,27 @@ spring:
         id: user-service
         uri: lb://user-service
         predicates[0]: Path=/user-service/**, /api/user/**, /api/auth/**
+        filters: StripPrefix=1
       routes[1]:
         id: party-service
         uri: lb://party-service
         predicates[0]: Path=/party-service/**, /api/party/**
+        filters: StripPrefix=1
       routes[2]:
         id: member-service
         uri: lb://member-service
         predicates[0]: Path=/member-service/**, /api/member/**
+        filters: StripPrefix=1
       routes[3]:
         id: bill-service
         uri: lb://bill-service
         predicates[0]: Path=/bill-service/**, /api/bill/**
+        filters: StripPrefix=1
       routes[4]:
         id: notification-service
         uri: lb://notification-service
         predicates[0]: Path=/notification-service/**, /api/notification/**
+        filters: StripPrefix=1
 
 eureka:
   client:
