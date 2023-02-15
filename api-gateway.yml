@@ -20,7 +20,7 @@ spring:
       routes[0]:
         id: user-service
         uri: lb://user-service
-        predicates[0]: Path=/user-service/**, /api/user/**, /api/auth/**
+        predicates[0]: Path=/user-service/**
         filters: StripPrefix=1
       routes[1]:
         id: party-service
