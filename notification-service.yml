@@ -22,7 +22,7 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
     template:
-      default-topic: notificationTopic
+      default-topic: newUserTopic
     consumer:
       group-id: notificationId
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -31,7 +31,7 @@ spring:
         spring:
           json:
             type:
-              mapping: event:com.menstalk.notificationservice.domain.Notification
+              mapping: event:com.menstalk.notificationservice.dto.NewUserRequest
 
 eureka:
   client:
