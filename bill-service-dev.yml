@@ -38,7 +38,7 @@ spring:
         spring:
           json:
             type:
-              mapping: event:com.menstalk.userservice.event.NewBillEvent
+              mapping: event:com.menstalk.billservice.event.NewBillEvent
 
 eureka:
   client:
