@@ -44,9 +44,9 @@ spring:
         ack-mode: manual_immediate
         concurrency: 3
         topics:
-          - name1: newUserTopic
+          - name: newUserTopic
             concurrency: 5
-          - name2: newBillTopic
+          - name: newBillTopic
             concurrency: 5
 
 eureka:
