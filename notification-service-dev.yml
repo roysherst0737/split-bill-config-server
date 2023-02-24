@@ -36,7 +36,9 @@ spring:
         spring:
           json:
             type:
-              mapping: event:com.menstalk.notificationservice.dto.NewUserRequest
+              mapping: 
+                event1: com.menstalk.notificationservice.dto.NewUserRequest
+                event2: com.menstalk.notificationservice.dto.NewBillRequest
       listener:
         type: record
         ack-mode: manual_immediate
