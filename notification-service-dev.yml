@@ -37,7 +37,7 @@ spring:
           json:
             type:
               mapping: 
-                newUserTopic: com.menstalk.notificationservice.dto.NewUserRequest
+                # newUserTopic: com.menstalk.notificationservice.dto.NewUserRequest
                 newBillTopic: com.menstalk.notificationservice.dto.NewBillRequest
       listener:
         type: record
