@@ -28,18 +28,18 @@ spring:
         web-allow-others: true
   # Kafka
   kafka:
-    bootstrap-servers: localhost:9092
     producer:
+      bootstrap-servers: localhost:9092
+      client-id: bill-service
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      client-id: producer-bill
-      producer-bill:
-        topic: newBillTopic
       properties:
         spring:
           json:
             type:
               mapping: event:com.menstalk.billservice.event.NewBillEvent
+    template:
+      default-topic: newBillTopic
 
 eureka:
   client:
