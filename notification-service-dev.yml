@@ -50,7 +50,7 @@ spring:
             topic-pattern: newUserTopic
             message-handler:
               type: record
-              method: handleMessage
+              method-name: handleMessage
               # match the class type with the mapping
               record-type: com.menstalk.notificationservice.dto.NewUserRequest
           # configuration for newBillTopic mapping
@@ -62,7 +62,7 @@ spring:
             topic-pattern: newBillTopic
             message-handler:
               type: record
-              method: handleMessage
+              method-name: handleMessage
               # match the class type with the mapping
               record-type: com.menstalk.notificationservice.dto.NewBillRequest
 
