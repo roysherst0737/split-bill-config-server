@@ -40,11 +40,12 @@ spring:
   # Kafka
   kafka:
     bootstrap-servers: localhost:9092
-    template:
-      default-topic: newUserTopic
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      client-id: producer-user
+      producer-user: 
+        topic: newUserTopic
       properties:
         spring:
           json:
