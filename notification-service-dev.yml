@@ -27,27 +27,66 @@ spring:
       settings:
         web-allow-others: true
   kafka:
-    bootstrap-servers: localhost:9092
     consumer:
-      group-id: notificationId
+      bootstrap-servers: localhost:9092
+      group-id: notification-consumer
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring:
-          json:
-            type:
-              mapping: 
-                newUserTopic: com.menstalk.notificationservice.dto.NewUserRequest
-                newBillTopic: com.menstalk.notificationservice.dto.NewBillRequest
+        spring.json.trusted.packages: com.menstalk.notificationservice.dto
+        client.id: notification-service
+      # new topic mapping configuration
+      # 1. newUserTopic mapping
       listener:
-        type: record
-        ack-mode: manual_immediate
-        concurrency: 3
-        topics:
-          - name: newUserTopic
-            concurrency: 5
-          - name: newBillTopic
-            concurrency: 5
+        simple:
+          # assign topics manually instead of using a group
+          topics: notifictaionTopics
+          # configuration for newUserTopic mapping
+          - id: newUserTopic-consumer
+            auto-startup: true
+            auto-offset-reset: earliest
+            concurrency: 3
+            # match the topic name and class type with the mapping
+            topic-pattern: newUserTopic
+            message-handler:
+              type: record
+              method: handleMessage
+              # match the class type with the mapping
+              record-type: com.menstalk.notificationservice.dto.NewUserRequest
+          # configuration for newBillTopic mapping
+          - id: newBillTopic-consumer
+            auto-startup: true
+            auto-offset-reset: earliest
+            concurrency: 3
+            # match the topic name and class type with the mapping
+            topic-pattern: newBillTopic
+            message-handler:
+              type: record
+              method: handleMessage
+              # match the class type with the mapping
+              record-type: com.menstalk.notificationservice.dto.NewBillRequest
+
+    # bootstrap-servers: localhost:9092
+    # consumer:
+    #   group-id: notification-consumer
+    #   key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    #   value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    #   properties:
+    #     spring:
+    #       json:
+    #         type:
+    #           mapping: 
+    #             newUserTopic: com.menstalk.notificationservice.dto.NewUserRequest
+    #             newBillTopic: com.menstalk.notificationservice.dto.NewBillRequest
+    #   listener:
+    #     type: record
+    #     ack-mode: manual_immediate
+    #     concurrency: 3
+    #     topics:
+    #       - name: newUserTopic
+    #         concurrency: 5
+    #       - name: newBillTopic
+    #         concurrency: 5
 
 eureka:
   client:
