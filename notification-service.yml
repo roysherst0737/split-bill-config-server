@@ -19,19 +19,18 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  # Kafka
   kafka:
     bootstrap-servers: localhost:9092
-    template:
-      default-topic: newUserTopic
     consumer:
-      group-id: notificationId
+      group-id: notification-consumer
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring:
           json:
             type:
-              mapping: event:com.menstalk.notificationservice.dto.NewUserRequest
+              mapping: event:com.menstalk.notificationservice.dto.InviteMemberRequest
 
 eureka:
   client:

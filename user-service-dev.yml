@@ -37,20 +37,6 @@ spring:
         max-idle: 8
         min-idle: 0
     timeout: 0
-  # Kafka
-  kafka:
-    producer:
-      bootstrap-servers: localhost:9092
-      client-id: user-service
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      properties:
-        spring:
-          json:
-            type:
-              mapping: event:com.menstalk.userservice.event.NewUserEvent
-    template:
-      default-topic: newUserTopic
         
 eureka:
   client:

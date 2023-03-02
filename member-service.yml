@@ -19,6 +19,20 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  # Kafka
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      client-id: member-service
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring:
+          json:
+            type:
+              mapping: event:com.menstalk.memberservice.event.InviteMemberEvent
+    template:
+      default-topic: inviteMemberTopic
 
 eureka:
   client:
