@@ -26,28 +26,44 @@ spring:
       enabled: true
       settings:
         web-allow-others: true
+
   kafka:
-    bootstrap-servers: localhost:9092
     consumer:
+      bootstrap-servers: localhost:9092
       group-id: notification-consumer
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: earliest
       properties:
-        spring:
-          json:
-            type:
-              mapping: 
-                newUserTopic: com.menstalk.notificationservice.dto.NewUserRequest
-                newBillTopic: com.menstalk.notificationservice.dto.NewBillRequest
-      listener:
-        type: record
-        ack-mode: manual_immediate
-        concurrency: 3
-        topics:
-          - name: newUserTopic
-            concurrency: 5
-          - name: newBillTopic
-            concurrency: 5
+        key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value.deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+        newUserTopic.value.default.type: com.menstalk.notificationservice.dto.NewUserRequest
+        newBillTopic.value.default.type: com.menstalk.notificationservice.dto.NewBillRequest
+      topics:
+        newUserTopic: new-user-request
+        newBillTopic: new-bill-request
+
+  # kafka:
+  #   bootstrap-servers: localhost:9092
+  #   consumer:
+  #     auto-offset-reset: earliest
+  #     group-id: notification-consumer
+  #     key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  #     value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+  #     properties:
+  #       spring:
+  #         json:
+  #           type:
+  #             mapping: 
+  #               newUserTopic: com.menstalk.notificationservice.dto.NewUserRequest
+  #               newBillTopic: com.menstalk.notificationservice.dto.NewBillRequest
+  #     listener:
+  #       type: record
+  #       ack-mode: manual_immediate
+  #       concurrency: 3
+  #       topics:
+  #         - name: newUserTopic
+  #           concurrency: 5
+  #         - name: newBillTopic
+  #           concurrency: 5
 
 eureka:
   client:
