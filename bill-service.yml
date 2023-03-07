@@ -8,7 +8,7 @@ spring:
     sampler:
       probability: 1.0
   datasource: # DataSource
-    url: jdbc:mysql://localhost:3306/bill_service?serverTimezone=Asia/Taipei
+    url: jdbc:mysql://mysql:3306/bill_service?serverTimezone=Asia/Taipei
     username: root
     password: password
     driver-class-name: com.mysql.cj.jdbc.Driver
